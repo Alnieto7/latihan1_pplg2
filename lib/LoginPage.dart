@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'registerpage.dart';
+import 'component/custom_textfield.dart';
+import 'component/custom_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,14 +11,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
 
   void _login() {
-    String username = usernameController.text;
-    String password = passwordController.text;
+    final username = usernameController.text;
+    final password = passwordController.text;
 
     if (username == 'admin' && password == 'admin') {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -32,73 +32,62 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("login page")),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "welcome to our aplication",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 4, 212, 248),
-            ),
-          ),
-          Center(
-            child: Container(
-              width: 90,
-              height: 90,
-              child: Image.asset('images/logoSMK.png'),
-            ),
-          ),
-          Text(
-            "please fill username and password below",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 10, bottom: 10),
-            child: TextField(
-              controller: usernameController, 
-              decoration: InputDecoration(
-                labelText: "username",
-                border: OutlineInputBorder(),
+      appBar: AppBar(title: Text("Login Page")),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Welcome to our application",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: const Color.fromARGB(255, 4, 212, 248),
               ),
             ),
-          ),
-          TextField(
-            controller: passwordController, 
-            obscureText: true,
-            decoration: InputDecoration(
-              labelText: "password",
-              border: OutlineInputBorder(),
+            SizedBox(height: 16),
+            Center(
+              child: Container(
+                width: 90,
+                height: 90,
+                child: Image.asset('images/logoSMK.png'),
+              ),
             ),
-          ),
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.all(10),
-            child: OutlinedButton(
-              onPressed: _login, 
-              child: Text('Login'),
+            SizedBox(height: 16),
+            Text(
+              "Please fill username and password below",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+              ),
             ),
-          ),
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.all(10),
-            child: OutlinedButton(
+            CustomTextField(
+              label: "Username",
+              controller: usernameController,
+            ),
+            CustomTextField(
+              label: "Password",
+              controller: passwordController,
+              isPassword: true,
+            ),
+            CustomButton(
+              text: "Login",
+              onPressed: _login,
+            ),
+            CustomButton(
+              text: "Register",
+              isOutlined: true,
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => RegisterPage()),
                 );
               },
-              child: Text('Register'),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'component/custom_textfield.dart';
+import 'component/custom_button.dart';
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController dateController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final dateController = TextEditingController();
 
-  void _selectDate() async {
-    DateTime? picked = await showDatePicker(
+  void _pickDate() async {
+    final picked = await showDatePicker(
       context: context,
       initialDate: DateTime(2005),
       firstDate: DateTime(1900),
@@ -26,45 +30,42 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  void _register() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("✅ Data berhasil diisi")),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Register")),
-      body: Padding(
+      appBar: AppBar(title: Text("Register Page")),
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            TextField(
+            CustomTextField(
+              label: "Nama",
               controller: nameController,
-              decoration: InputDecoration(labelText: "Nama"),
             ),
-            SizedBox(height: 10),
-            TextField(
+            CustomTextField(
+              label: "Email",
               controller: emailController,
-              decoration: InputDecoration(labelText: "Email"),
             ),
-            SizedBox(height: 10),
-            TextField(
+            CustomTextField(
+              label: "Password",
               controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(labelText: "Password"),
+              isPassword: true,
             ),
-            SizedBox(height: 10),
-            TextField(
+            CustomTextField(
+              label: "Tanggal Lahir",
               controller: dateController,
               readOnly: true,
-              onTap: _selectDate,
-              decoration: InputDecoration(labelText: "Tanggal Lahir"),
+              onTap: _pickDate,
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                print("Nama: ${nameController.text}");
-                print("Email: ${emailController.text}");
-                print("Password: ${passwordController.text}");
-                print("Tanggal Lahir: ${dateController.text}");
-              },
-              child: Text("Register"),
+            CustomButton(
+              text: "Register",
+              onPressed: _register,
             ),
           ],
         ),
