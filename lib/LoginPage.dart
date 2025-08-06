@@ -65,10 +65,12 @@ class _LoginPageState extends State<LoginPage> {
             ),
             CustomTextField(
               label: "Username",
+              myTextColor: Colors.deepOrangeAccent,
               controller: usernameController,
             ),
             CustomTextField(
               label: "Password",
+              myTextColor: Colors.deepOrangeAccent,
               controller: passwordController,
               isPassword: true,
             ),

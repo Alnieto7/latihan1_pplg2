@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final bool isPassword;
   final bool readOnly;
   final VoidCallback? onTap;
+  final Color myTextColor;
 
   const CustomTextField({
     Key? key,
@@ -13,7 +14,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     this.isPassword = false,
     this.readOnly = false,
-    this.onTap,
+    this.onTap, required this.myTextColor,
   }) : super(key: key);
 
   @override
@@ -28,6 +29,7 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           border: const OutlineInputBorder(),
+          labelStyle: TextStyle(color: myTextColor),
         ),
       ),
     );
