@@ -47,19 +47,23 @@ class _RegisterPageState extends State<RegisterPage> {
             CustomTextField(
               label: "Nama",
               controller: nameController,
+              myTextColor: Colors.blue,
             ),
             CustomTextField(
               label: "Email",
               controller: emailController,
+              myTextColor: Colors.blue,
             ),
             CustomTextField(
               label: "Password",
               controller: passwordController,
+              myTextColor: Colors.blue,
               isPassword: true,
             ),
             CustomTextField(
               label: "Tanggal Lahir",
               controller: dateController,
+              myTextColor: Colors.blue,
               readOnly: true,
               onTap: _pickDate,
             ),

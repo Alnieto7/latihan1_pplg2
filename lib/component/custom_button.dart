@@ -4,6 +4,7 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final bool isOutlined;
+  
 
   const CustomButton({
     Key? key,
