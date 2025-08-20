@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:get/get.dart';
 import 'package:latihan1_pplg2/model/football_player_model.dart';
 

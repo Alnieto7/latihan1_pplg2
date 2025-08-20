@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:latihan1_pplg2/component/controllers/bottom_nav_controller.dart';
+import 'package:latihan1_pplg2/component/pages/calculatorPage.dart';
 import 'package:latihan1_pplg2/component/pages/footballPlayer.dart';
-import 'package:latihan1_pplg2/routes/pages.dart';
-import 'package:latihan1_pplg2/routes/routes.dart';
-import 'component/pages/calculatorPage.dart';
+import 'package:latihan1_pplg2/component/pages/profile_page.dart';
+import 'package:latihan1_pplg2/model/football_player_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,11 +22,46 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
+      home:  MainNavigation(), // ⬅️ ganti dari initialRoute ke home
+    );
+  }
+}
 
-     
+class MainNavigation extends StatelessWidget {
+   MainNavigation({super.key});
 
-      initialRoute: AppRoutes.footballPage,
-      getPages: AppPages.pages,
+  final List<Widget> pages =  [
+    HalamanKalkulator(),
+    FootballPlayerPage(),
+    ProfilePage(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final BottomNavController controller = Get.put(BottomNavController());
+
+    return Scaffold(
+      body: Obx(() => pages[controller.currentIndex.value]),
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          currentIndex: controller.currentIndex.value,
+          onTap: controller.changePage,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.calculate),
+              label: "Calculator",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.sports_soccer),
+              label: "Players",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profile",
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
