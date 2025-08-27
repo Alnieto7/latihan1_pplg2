@@ -4,7 +4,8 @@ import 'package:latihan1_pplg2/component/controllers/bottom_nav_controller.dart'
 import 'package:latihan1_pplg2/component/pages/calculatorPage.dart';
 import 'package:latihan1_pplg2/component/pages/footballPlayer.dart';
 import 'package:latihan1_pplg2/component/pages/profile_page.dart';
-import 'package:latihan1_pplg2/model/football_player_model.dart';
+import 'package:latihan1_pplg2/routes/pages.dart';   // ✅ import AppPages
+import 'package:latihan1_pplg2/routes/routes.dart'; // ✅ import AppRoutes
 
 void main() {
   runApp(const MyApp());
@@ -22,15 +23,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home:  MainNavigation(), // ⬅️ ganti dari initialRoute ke home
+      home: MainNavigation(),     // ⬅️ tetap pakai bottom nav
+      getPages: AppPages.pages,   // ✅ daftar semua route ada di AppPages
     );
   }
 }
 
 class MainNavigation extends StatelessWidget {
-   MainNavigation({super.key});
+  MainNavigation({super.key});
 
-  final List<Widget> pages =  [
+  final List<Widget> pages = [
     HalamanKalkulator(),
     FootballPlayerPage(),
     ProfilePage(),
