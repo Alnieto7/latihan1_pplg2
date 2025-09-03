@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:latihan1_pplg2/component/controllers/calculatorController.dart';
 
 class HalamanKalkulator extends StatelessWidget {
-  final PengontrolKalkulator pengontrol = Get.put(PengontrolKalkulator());
+ // final PengontrolKalkulator pengontrol = Get.put(PengontrolKalkulator());
+ final PengontrolKalkulator pengontrol = Get.find<PengontrolKalkulator>();
 
   @override
   Widget build(BuildContext context) {

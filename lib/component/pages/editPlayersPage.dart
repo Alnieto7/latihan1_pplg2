@@ -5,7 +5,8 @@ import 'package:latihan1_pplg2/component/textfieldPlayer.dart';
 import '../controllers/editFootballPlayersController.dart';
 
 class EditPlayersPage extends StatelessWidget {
-  final EditFootballPlayersController controller = Get.find();
+final EditFootballPlayersController controller = Get.put(EditFootballPlayersController());
+
 
   final nameController = TextEditingController();
   final positionController = TextEditingController();
