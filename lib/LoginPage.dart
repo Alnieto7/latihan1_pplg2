@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latihan1_pplg2/fragments/calculatorPage.dart';
 import 'registerpage.dart';
 import 'component/custom_textfield.dart';
 import 'component/custom_button.dart';
@@ -84,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RegisterPage()),
+                  MaterialPageRoute(builder: (context) => HalamanKalkulator()),
                 );
               },
             ),
