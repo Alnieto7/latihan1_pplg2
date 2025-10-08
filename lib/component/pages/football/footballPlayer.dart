@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latihan1_pplg2/routes/routes.dart';
-import '../component/controllers/footballPlayerController.dart';
+import '../../controllers/footballPlayerController.dart';
 
 class FootballPlayerPage extends StatelessWidget {
-  final FootballPlayerController controller = Get.put(FootballPlayerController());
+   final controller = Get.find<FootballPlayerController>();
 
   FootballPlayerPage({super.key});
 
